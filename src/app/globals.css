@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+/*
+ * Olivia design tokens.
+ * Every value below was measured from the UI/UX spec PDF, which was printed
+ * from a 794px-wide page at 0.75 scale (px = pt / 0.75).
+ */
+@theme {
+  /* Brand palette */
+  --color-forest: #12331b;
+  --color-leaf: #4c9a3e;
+  --color-citrus: #f5a623;
+  --color-tomato: #d9432e;
+  --color-paper: #f4f3ea;
+
+  /* Supporting colours used by the spec */
+  --color-ink: #22240a; /* text on citrus buttons */
+  --color-muted: #5c6a5e; /* secondary copy */
+  --color-strike: #9aa294; /* struck-through old price */
+  --color-mist: #dfe8dc; /* body copy on forest */
+  --color-moss: #4a6a4e; /* outline buttons on forest */
+  --color-amber: #b9760f; /* "Restock soon" / "En route" text */
+  --color-placeholder: #999999;
+  --color-line: #eeeeee; /* cart dividers */
+  --color-rule: #e5e3d8; /* table header rule */
+  --color-rule-soft: #eeece2; /* table row rule */
+  --color-sand: #e7e4d9;
+
+  /* Pastel tiles behind goods icons */
+  --color-peach: #fdeee0;
+  --color-mint: #e7f3e2;
+  --color-sky: #eaf0fb;
+  --color-aqua: #eaf5f2;
+  --color-apricot: #f7e6d0;
+  --color-blush: #fbe3df;
+  --color-wheat: #f3ecd8;
+  --color-cream: #fdecd2;
+
+  /* Exact type scale from the spec, with the browser's "normal" leading the spec uses */
+  --text-11: 11px;
+  --text-11--line-height: normal;
+  --text-12: 12px;
+  --text-12--line-height: normal;
+  --text-13: 13px;
+  --text-13--line-height: normal;
+  --text-14: 14px;
+  --text-14--line-height: normal;
+  --text-15: 15px;
+  --text-15--line-height: 18px;
+  --text-16: 16px;
+  --text-16--line-height: normal;
+  --text-17: 17px;
+  --text-17--line-height: normal;
+  --text-18: 18px;
+  --text-18--line-height: normal;
+  --text-20: 20px;
+  --text-20--line-height: normal;
+  --text-22: 22px;
+  --text-22--line-height: normal;
+  --text-24: 24px;
+  --text-24--line-height: normal;
+  --text-26: 26px;
+  --text-26--line-height: normal;
+  --text-28: 28px;
+  --text-28--line-height: 1.2;
+  --text-30: 30px;
+  --text-30--line-height: 1.17;
+  --text-32: 32px;
+  --text-32--line-height: 1.19;
+  --text-34: 34px;
+  --text-34--line-height: 1;
+  --text-52: 52px;
+  --text-52--line-height: 1;
+  --text-56: 56px;
+  --text-56--line-height: 1.17;
+  --text-90: 90px;
+  --text-90--line-height: 1;
+  --text-110: 110px;
+  --text-110--line-height: 1;
+
+  /* Radii */
+  --radius-badge: 6px;
+  --radius-btn: 8px;
+  --radius-tile: 10px;
+  --radius-card: 14px;
+  --radius-hero: 16px;
+
+  /* Elevation */
+  --shadow-card: 0 1px 4px rgb(0 0 0 / 0.06);
+  --shadow-lift: 0 14px 28px -12px rgb(18 51 27 / 0.22), 0 2px 6px rgb(0 0 0 / 0.05);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-bump: bump 0.35s ease-out;
+  --animate-toast: toast-in 0.25s ease-out;
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-3deg); }
+  }
+  @keyframes bump {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.35); }
+    100% { transform: scale(1); }
+  }
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+}
+
+/* Fonts — the --nf-* variables are set by next/font in layout.tsx */
+@theme inline {
+  --font-sans: var(--nf-roboto), var(--nf-emoji), var(--nf-symbols), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--nf-serif), var(--nf-emoji), Georgia, serif;
+  --font-symbols: var(--nf-symbols), var(--nf-roboto), sans-serif;
+}
+
+@layer base {
+  html {
+    /* The spec renders with the browser's default leading, not Tailwind's 1.5 */
+    line-height: normal;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-forest);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: color-mix(in srgb, var(--color-citrus) 35%, transparent);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-citrus);
+    outline-offset: 2px;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
