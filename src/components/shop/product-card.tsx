@@ -13,7 +13,7 @@ export function ProductCard({ product, className }: { product: Product; classNam
   return (
     <article
       className={cn(
-        "group relative flex min-w-0 flex-col md:min-w-auto rounded-card bg-white p-4 shadow-card transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lift",
+        "group relative flex min-w-0 flex-col rounded-card bg-white p-4 shadow-card transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-lift",
         className,
       )}
     >

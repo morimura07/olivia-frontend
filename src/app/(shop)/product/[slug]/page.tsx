@@ -146,7 +146,7 @@ export default async function ProductPage({ params }: PageProps<"/product/[slug]
           </div>
           <div className="-mx-4 flex snap-x scroll-px-4 gap-4 overflow-x-auto px-4 pt-1 pb-3 no-scrollbar md:mx-0 md:grid md:grid-cols-[repeat(5,1fr)] md:overflow-visible md:px-0">
             {more.map((p) => (
-              <ProductCard key={p.id} product={p} className="w-[160px] shrink-0 snap-start md:w-auto" />
+              <ProductCard key={p.id} product={p} className="w-[160px] shrink-0 snap-start md:w-auto md:min-w-auto" />
             ))}
           </div>
         </section>
